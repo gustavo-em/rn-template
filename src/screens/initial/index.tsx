@@ -1,13 +1,13 @@
 import React from "react";
-import { View } from "react-native";
+import { TouchableWithoutFeedback, View } from "react-native";
 
 import Logo from "../../assets/bg7.svg";
-import { Card, Container, IconCard, Title, TitleCard } from "./style";
+import { Card, Container, ContainerMore, IconCard, More, Title, TitleCard } from "./style";
 import { colors } from '../../colors/index';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
 
-export const Initial = ()=>{
+export const Initial = ({navigation})=>{
     return(
         <>
             <View
@@ -23,20 +23,21 @@ export const Initial = ()=>{
             </View>
             <Container>
                 <Title>
-                    Funcionalidades
+                   Informações
                 </Title>
-                <Card  start={{x: 0, y: 0.5}} end={{x: 1, y: 0.5}} colors={[colors.azul_100, 'transparent']}>
-                    <TitleCard>Titulo</TitleCard>
-                    <IconCard></IconCard>
-                </Card>
-                <Card  start={{x: 0, y: 0.5}} end={{x: 1, y: 0.5}} colors={[colors.azul_100, 'transparent']}>
-                    <TitleCard>Titulo</TitleCard>
-                    <IconCard></IconCard>
-                </Card>
-                <Card  start={{x: 0, y: 0.5}} end={{x: 1, y: 0.5}} colors={[colors.azul_100, 'transparent']}>
-                    <TitleCard>Titulo</TitleCard>
-                    <IconCard></IconCard>
-                </Card>
+                <TouchableWithoutFeedback onPress={()=>{
+                    console.log("foi")
+                    navigation.navigate('Circuitos')
+                }}>
+                    <Card start={{x: 0, y: 0.5}} end={{x: 1, y: 0.5}} colors={[colors.azul_100, 'transparent']}>
+                        <Icon style={{marginHorizontal: 10}} name='map-marked-alt' size={50}></Icon>
+                        <TitleCard >Circuitos</TitleCard>
+                        <IconCard></IconCard>
+                    </Card>
+                </TouchableWithoutFeedback>
+                <ContainerMore>
+                    <More>Em breve mais funcionalidades</More>
+                </ContainerMore>
             </Container>
         </>
     )

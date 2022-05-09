@@ -11,24 +11,35 @@ export const Container = styled.View`
 
 
 export const Title = styled.Text`
-    color: ${colors.azul_100};
+    color: ${colors.branco};
     font-family: 'Rubik-SemiBold';
     font-size: 34px;
 
 `;
 
 
+export const More = styled.Text`
+    color: ${colors.branco_100};
+    font-family: 'Rubik-Regular';
+    font-size: 24px;
+`
+
+export const ContainerMore = styled.View`
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+`
+
+
 export const Card = styled(LinearGradient)`
     width: 100%;
     height: 100px;
     border-radius: 15px;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
     flex-direction: row;
     position: relative;
-
     margin: 20px 0px;
-    
 `;
 
 export const IconCard = styled(Icon).attrs(()=>({
