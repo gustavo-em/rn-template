@@ -1,6 +1,6 @@
 import { DefaultRouterOptions, NavigationProp, RouteProp } from '@react-navigation/native';
 import React from 'react'
-import { ActivityIndicator, Alert, FlatList, Text, TouchableOpacity, View } from 'react-native';
+import { ActivityIndicator, Alert, FlatList, TouchableOpacity, View } from 'react-native';
 import Logo from "../../assets/bg7.svg";
 import { CardComponent } from '../../components/card';
 import { HeaderBack } from '../../components/headerBack';
@@ -21,13 +21,18 @@ export const Circuits = ({ navigation, route }: INav) => {
 
     const [circuits, setCircuits] = React.useState([])
     React.useEffect(() => {
+
+
         fetch('http://ergast.com/api/f1/circuits.json')
             .then(r => r.json())
             .then(r => {
                 console.log(r)
-                setCircuits(r.MRData.CircuitTable.Circuits)
+                setTimeout(()=>{
+
+                    setCircuits(r.MRData.CircuitTable.Circuits)
+                },2000)
             }).catch(err=>{
-                Alert.alert("Erro ao carregar os circuitos da API", err)
+                Alert.alert("Erro", "Erro ao carregar os dados da API")
             })
     }, [])
     return (
@@ -45,15 +50,15 @@ export const Circuits = ({ navigation, route }: INav) => {
             </View>
             <HeaderBack navigation={navigation}></HeaderBack>
             <Container>
-                {circuits ? 
+                {circuits.length ? 
                 <FlatList            
                     data={circuits}
                     renderItem={({item}: IItemCircuits ) =>
-                        <TouchableOpacity onPress={()=>Alert.alert(`${item.circuitName}`, `País: ${item.Location.country}\nLocalidade: ${item.Location.locality}`)}>
+                        <TouchableOpacity onPress={()=>console.log(`${item.circuitName}`, `País: ${item.Location.country}\nLocalidade: ${item.Location.locality}`)}>
                             <CardComponent>{item.circuitName}</CardComponent>
                         </TouchableOpacity> 
                     }  
-                /> : <View style={{flex: 1, justifyContent: 'center', alignItems: 'center', zIndex: 5000}}><ActivityIndicator size={50} color={'#FFFFFF'}></ActivityIndicator></View>
+                /> : <View style={{flex: 1,justifyContent: 'center', alignItems: 'center'}}><ActivityIndicator size={50} color={'#FFFFFF'}></ActivityIndicator></View>
                 }
 
             </Container>

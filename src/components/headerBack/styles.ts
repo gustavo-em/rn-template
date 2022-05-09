@@ -19,4 +19,5 @@ export const IconBack = styled(Icon).attrs(()=>({
 }))`
     position: absolute;
     left: 10px;
+    padding: 20px;
 `
